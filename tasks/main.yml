@@ -1,0 +1,27 @@
+---
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - azure_storageblob - Check for {{ blob_file }} exists"
+  run_once: true
+  connection: local
+  stat:
+    path: "{{ blob_file_path }}/{{ blob_file }}"
+  register: blob_exist
+
+- debug:
+    msg: "{{ local_tmp_tar }} status is: {{ blob_exist.stat.exists }}"
+
+- name: "{{ ansible_distribution | lower }} | {{ ansible_distribution_release }} - azure_storageblob - Send it to azure_storageblob ..."
+  run_once: True
+  connection: local
+  azure_rm_storageblob:
+    resource_group: "{{ azure_resource_group }}"
+    storage_account_name: "{{ azure_storage_account_name }}"
+    subscription_id: "{{ azure_subscription_id }}"
+    client_id: "{{ azure_client_id }}"
+    secret: "{{ azure_client_secret }}"
+    tenant: "{{ azure_tenant_id }}"
+    container: "{{ blob_container_name }}"
+    blob: "{{ blob_file }}"
+    src: "{{ blob_file_path }}/{{ blob_file }}"
+    public_access: container
+    content_type: 'application/x-tar'
+  when: blob_exist.stat.exists

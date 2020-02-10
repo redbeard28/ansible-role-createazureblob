@@ -1,0 +1,22 @@
+---
+galaxy_info:
+  author: Jeremie CUADRADO
+  role_name: createazureblob
+  description: Ansible role create azure blob. It create at the same time a storage container if not exist.
+  license: GPLv3
+  company: Redbeard-Consulting
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Debian
+      versions:
+        - all
+
+  galaxy_tags:
+    - azure
+    - cloud
+    - blob
+    - storage
+
+  dependencies:
+    - src: redbeard28.pyazuremodules

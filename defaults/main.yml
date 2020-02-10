@@ -1,0 +1,14 @@
+---
+blob_file_path: "/tmp"
+blob_file: "myfile"
+blob_container_name: "container{{ blob_file }}"
+# Check Mime-types on https://developer.mozilla.org/fr/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Complete_list_of_MIME_types
+blob_content_type: "application/x-tar"
+
+################## AZURE PARTS #####################################
+azure_subscription_id: "{{ vault_azure_subscription_id }}"
+azure_client_id: "{{ vault_azure_client_id }}"
+azure_client_secret: "{{ vault_azure_client_secret }}"
+azure_tenant_id: "{{ vault_azure_tenant_id }}"
+azure_resource_group: "{{ vault_azure_resource_group }}"
+azure_storage_account_name: "{{ vault_azure_storage_account_name }}"
